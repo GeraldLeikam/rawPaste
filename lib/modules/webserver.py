@@ -1,4 +1,4 @@
-from lib.modules.threaded_http_server import ThreadedHTTPServer
+from lib.modules.threaded_server import ThreadedServer
 from lib.modules.request_handler_webserver import RequestHandlerWeb
 from sys import stdout
 
@@ -8,7 +8,7 @@ class Webserver():
         requestHandler = RequestHandlerWeb
         requestHandler.config = config
         requestHandler.file_handler = file_handler
-        webserver = ThreadedHTTPServer(
+        webserver = ThreadedServer(
             (
                 str(config.server.address),
                 int(config.server.webport)
