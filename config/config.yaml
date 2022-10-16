@@ -1,0 +1,9 @@
+Server:
+  WebPort: 8472
+  NetCatPort: 9999
+  Address: 127.0.0.1
+  SSl: False
+
+Datastorage:
+  Path: ./storage
+  Expires: 14d
