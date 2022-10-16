@@ -1,5 +1,5 @@
 Server:
-  WebPort: 8472
+  WebPort: 80
   NetCatPort: 9999
   Address: 127.0.0.1
   SSl: False
