@@ -4,11 +4,18 @@ from os.path import join
 from os import listdir
 from os import stat
 from os import remove
+from os.path import exists
+from os import mkdir
 
 class FileHandler:
 
     def __init__(self, config):
         self.storage_path = config.datastorage.path
+        self.__check_storage_path__()
+
+    def __check_storage_path__(self):
+        if not exists(self.storage_path):
+            mkdir(self.storage_path)
 
     def put_file(self, data: bytes) -> str:
         while True:
