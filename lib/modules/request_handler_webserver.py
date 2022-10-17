@@ -11,8 +11,10 @@ class RequestHandlerWeb(BaseHTTPRequestHandler):
     _file_handler = None
     _config = None
 
+    server_version = 'xws'
 
     def _set_response(self, response_code):
+
         self.send_response(response_code)
         self.send_header('Content-type', f'text/html; charset={self.charset}')
         self.end_headers()
