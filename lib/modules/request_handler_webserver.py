@@ -14,6 +14,8 @@ class RequestHandlerWeb(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
 
+    def do_HEAD(self):
+        print(self.path)
 
     def do_GET(self):
         file_data = self.file_handler.get_file(filename=self.path[1:])
