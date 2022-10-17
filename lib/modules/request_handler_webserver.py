@@ -15,7 +15,7 @@ class RequestHandlerWeb(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_HEAD(self):
-        print(self.path)
+        self._set_response(200)
 
     def do_GET(self):
         file_data = self.file_handler.get_file(filename=self.path[1:])
