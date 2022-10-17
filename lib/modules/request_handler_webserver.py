@@ -17,14 +17,13 @@ class RequestHandlerWeb(BaseHTTPRequestHandler):
     def _set_response(self, response_code):
 
         self.send_response(response_code)
-        self.send_header('Content-type', f'text/html; charset={self.charset}')
+        self.send_header('Content-type', f'text/html; charset={self.charset.upper()}')
         self.end_headers()
 
     def do_HEAD(self):
 
         self.send_response(200, 'OK')
-        self.send_header('Content-type', f'text/html; charset={self.charset}')
-        self.send_header('Server', 'xws')
+        self.send_header('Content-type', f'text/html; charset={self.charset.upper()}')
         self.end_headers()
 
     def do_GET(self):
