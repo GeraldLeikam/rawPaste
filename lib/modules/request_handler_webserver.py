@@ -18,6 +18,7 @@ class RequestHandlerWeb(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_HEAD(self):
+        print(self.server)
         self.send_response(200, 'OK')
         self.send_header('Content-type', f'text/html; charset={self.charset}')
         self.send_header('Server', 'xws')
