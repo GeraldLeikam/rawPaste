@@ -2,7 +2,10 @@
 
 ## Usage
 
-Self-explanatory live examples (using public server) <!-- Badges --> https://img.shields.io/website?down_color=red&down_message=down&style=plastic&up_color=green&up_message=up&url=http%3A%2F%2Frawpaste.drezael.de:
+<!-- Badges --> 
+[![Website rawpaste.drezael.de](https://img.shields.io/website?down_color=red&down_message=down&style=plastic&up_color=green&up_message=up&url=http%3A%2F%2Frawpaste.drezael.de)](http://rawpaste.drezael.de)
+
+Self-explanatory live examples (using public server):
 
 ```
 echo Hello World! | nc rawpaste.drezael.de 9999
