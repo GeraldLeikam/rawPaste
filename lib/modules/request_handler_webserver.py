@@ -6,16 +6,22 @@ from pygments.lexers import guess_lexer
 
 class RequestHandlerWeb(BaseHTTPRequestHandler):
 
+    charset = 'utf-8'
+
     _file_handler = None
     _config = None
 
+
     def _set_response(self, response_code):
         self.send_response(response_code)
-        self.send_header('Content-type', 'text/html')
+        self.send_header('Content-type', f'text/html; charset={self.charset}')
         self.end_headers()
 
     def do_HEAD(self):
-        self._set_response(200)
+        self.send_response(200, 'OK')
+        self.send_header('Content-type', f'text/html; charset={self.charset}')
+        self.send_header('Server', 'xws')
+        self.end_headers()
 
     def do_GET(self):
         file_data = self.file_handler.get_file(filename=self.path[1:])
