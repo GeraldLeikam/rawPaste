@@ -18,13 +18,14 @@ class RequestHandlerWeb(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_HEAD(self):
-        print(self.server)
+
         self.send_response(200, 'OK')
         self.send_header('Content-type', f'text/html; charset={self.charset}')
         self.send_header('Server', 'xws')
         self.end_headers()
 
     def do_GET(self):
+        print(dir(self.server))
         file_data = self.file_handler.get_file(filename=self.path[1:])
         if file_data is not None:
             self._set_response(200)
