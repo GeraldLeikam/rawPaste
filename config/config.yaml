@@ -4,6 +4,13 @@ Server:
   Address: 127.0.0.1
   SSl: False
 
-Datastorage:
-  Path: ./storage
-  Expires: 14d
+Paths:
+  DataStorage: ./storage
+  HtmlStorage: ./lib/html
+  FaviconStorage: ./lib/html/favicon
+  StylesheetStorage: ./lib/html/stylesheet
+
+DataStorage:
+  FilesExpires: true
+  ExpireTime: 14d
+  CleanerExecutionTime: 5M

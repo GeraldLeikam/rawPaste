@@ -12,10 +12,10 @@ class RequestHandlerNetcat(BaseRequestHandler):
         data = b''
         while True:
             try:
-                data += self.request.recv(1)
+                data += self.request.recv(1024)
             except:
                 break
-        filename = self.file_handler.put_file(data)
+        filename = self.file_handler.put_file(path=self.config.paths.datastorage, data=data)
         web_protocol = 'http://'
         if self.config.server.ssl:
             web_protocol = 'https://'

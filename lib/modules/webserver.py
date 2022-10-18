@@ -13,7 +13,7 @@ class Webserver():
                 str(config.server.address),
                 int(config.server.webport)
             ),
-            RequestHandlerWeb
+            requestHandler
         )
         while True:
             stdout.flush()

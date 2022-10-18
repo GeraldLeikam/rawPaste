@@ -5,41 +5,49 @@ from os import listdir
 from os import stat
 from os import remove
 from os.path import exists
-from os import mkdir
 
 class FileHandler:
 
+    storages = {}
+
     def __init__(self, config):
-        self.storage_path = config.datastorage.path
-        self.__check_storage_path__()
+        self.storage_path = config.paths.datastorage
 
-    def __check_storage_path__(self):
-        if not exists(self.storage_path):
-            mkdir(self.storage_path)
+    def check_path(self, path: str) -> bool:
+        if exists(path):
+            return True
+        return False
 
-    def put_file(self, data: bytes) -> str:
+    def check_file(self, path: str, filename: str) -> bool:
+        return self.check_path(join(path, filename))
+
+    def put_file(self, path: str, data: bytes) -> any:
         while True:
             filename = f'{crc32(str(time()).encode("utf-8") + data):x}'
-            if filename not in listdir(self.storage_path):
+            if filename not in listdir(path):
+                with open(join(path, filename), 'wb') as writer:
+                    writer.write(data)
                 break
-        with open(join(self.storage_path, filename), 'wb') as writer:
-            writer.write(data)
-        return filename
+        if self.check_file(path=path, filename=filename):
+            return filename
+        return None
 
-    def get_file(self, filename):
-        if filename in listdir(self.storage_path):
-            with open(join(self.storage_path, filename), 'rb') as reader:
+    def get_file(self, path: str, filename: str) -> any:
+        if filename in listdir(path):
+            with open(join(path, filename), 'rb') as reader:
                 return reader.read()
         return None
 
-    def get_file_list(self):
-        return listdir(self.storage_path)
+    def get_file_list(self, path: str) -> list[str]:
+        return listdir(path)
 
-    def get_creation_time(self, file):
-        return stat(join(self.storage_path, file)).st_ctime
+    def get_creation_time(self, path: str, filename: str) -> float:
+        return stat(join(path, filename)).st_ctime
 
-    def delete_file(self, file):
+    def delete_file(self, path: str, filename: str) -> bool:
         try:
-            remove(join(self.storage_path, file))
+            remove(join(path, filename))
+            if not self.check_file(path, filename):
+                return True
         except:
-            pass
+            return False
