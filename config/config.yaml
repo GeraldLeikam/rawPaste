@@ -11,4 +11,4 @@ Paths:
 DataStorage:
   FilesExpires: true
   ExpireTime: 14d
-  CleanerExecutionTime: 5M
+  CleanerExecutionTime: 5m
