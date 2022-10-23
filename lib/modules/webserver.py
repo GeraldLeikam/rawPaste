@@ -7,7 +7,6 @@ class Webserver():
     def __init__(self, config, file_handler):
         requestHandler = RequestHandlerWeb
         requestHandler.config = config
-        requestHandler.file_handler = file_handler
         webserver = ThreadedServer(
             (
                 str(config.server.address),

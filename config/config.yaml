@@ -7,8 +7,6 @@ Server:
 Paths:
   DataStorage: ./storage
   HtmlStorage: ./lib/html
-  FaviconStorage: ./lib/html/favicon
-  StylesheetStorage: ./lib/html/stylesheet
 
 DataStorage:
   FilesExpires: true
