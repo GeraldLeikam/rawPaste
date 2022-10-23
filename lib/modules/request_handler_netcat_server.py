@@ -9,11 +9,13 @@ class RequestHandlerNetcat(BaseRequestHandler):
     _web_protocol = 'http'
 
     def setup(self) -> None:
-        self.request.setblocking(False)
+        #self.request.setblocking(False)
+        self.request.settimeout(2)
 
     def handle(self) -> None:
         print(f'getting request from {self.client_address}')
         data = b''
+        print(dir(self.request))
         while True:
             try:
                 data += self.request.recv(1048576)
